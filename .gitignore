@@ -1,0 +1,10 @@
+# no object file included
+obj/
+
+# no compile result included
+os
+mem
+
+# personal use by vim, tag file and compile database for clangd
+tags
+compile_commands.json
