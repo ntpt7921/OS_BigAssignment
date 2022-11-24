@@ -43,7 +43,7 @@ static void * timer_routine(void * args) {
 
 		/* Increase the time slot */
 		_time++;
-		
+
 		/* Let devices continue their job */
 		for (temp = dev_list; temp != NULL; temp = temp->next) {
 			pthread_mutex_lock(&temp->id.timer_lock);
@@ -76,11 +76,11 @@ void next_slot(struct timer_id_t * timer_id) {
 	pthread_mutex_unlock(&timer_id->timer_lock);
 }
 
-uint64_t current_time() {
+uint64_t current_time(void) {
 	return _time;
 }
 
-void start_timer() {
+void start_timer(void) {
 	timer_started = 1;
 	pthread_create(&_timer, NULL, timer_routine, NULL);
 }
@@ -92,13 +92,13 @@ void detach_event(struct timer_id_t * event) {
 	pthread_mutex_unlock(&event->event_lock);
 }
 
-struct timer_id_t * attach_event() {
+struct timer_id_t * attach_event(void) {
 	if (timer_started) {
 		return NULL;
 	}else{
 		struct timer_id_container_t * container =
 			(struct timer_id_container_t*)malloc(
-				sizeof(struct timer_id_container_t)		
+				sizeof(struct timer_id_container_t)
 			);
 		container->id.done = 0;
 		container->id.fsh = 0;
@@ -117,7 +117,7 @@ struct timer_id_t * attach_event() {
 	}
 }
 
-void stop_timer() {
+void stop_timer(void) {
 	timer_stop = 1;
 	pthread_join(_timer, NULL);
 	while (dev_list != NULL) {

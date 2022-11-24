@@ -8,13 +8,14 @@ INCLUDE = include
 
 CC = gcc
 DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+WARNING = -Wall -Wextra -Wpedantic
+CFLAGS = $(WARNING) -c $(DEBUG)
+LFLAGS = $(WARNING) $(DEBUG)
 
 vpath %.c $(SRC)
 vpath %.h $(INCLUDE)
 
-MAKE = $(CC) $(INC) 
+MAKE = $(CC) $(INC)
 
 # Object files needed by modules
 MEM_OBJ = $(addprefix $(OBJ)/, paging.o mem.o cpu.o loader.o)
@@ -53,7 +54,7 @@ test_sched:
 	@echo ------ SCHEDULING TEST 1 -------------------------------------------
 	./os sched_1
 	@echo NOTE: Read file output/sched_1 to verify your result
-	
+
 test_os:
 	@echo ----- OS TEST 0 ----------------------------------------------------
 	./os os_0
@@ -62,11 +63,15 @@ test_os:
 	./os os_1
 	@echo NOTE: Read file output/os_1 to verify your result
 
-$(OBJ)/%.o: %.c ${HEADER}
+$(OBJ)/%.o: %.c ${HEADER} $(OBJ)
 	$(MAKE) $(CFLAGS) $< -o $@
+
+$(OBJ):
+	mkdir -p $@
 
 clean:
 	rm -f obj/*.o os sched mem
+	rm -r obj
 
 
 

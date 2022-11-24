@@ -8,3 +8,4 @@ mem
 # personal use by vim, tag file and compile database for clangd
 tags
 compile_commands.json
+.cache/

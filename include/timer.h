@@ -13,16 +13,16 @@ struct timer_id_t {
 	pthread_mutex_t timer_lock;
 };
 
-void start_timer();
+void start_timer(void);
 
-void stop_timer();
+void stop_timer(void);
 
-struct timer_id_t * attach_event();
+struct timer_id_t * attach_event(void);
 
 void detach_event(struct timer_id_t * event);
 
 void next_slot(struct timer_id_t* timer_id);
 
-uint64_t current_time();
+uint64_t current_time(void);
 
 #endif
