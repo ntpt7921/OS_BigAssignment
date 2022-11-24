@@ -8,8 +8,9 @@ INCLUDE = include
 
 CC = gcc
 DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+WARNING = -Wall -Wextra -Wpedantic
+CFLAGS = $(WARNING) -c $(DEBUG)
+LFLAGS = $(WARNING) $(DEBUG)
 
 vpath %.c $(SRC)
 vpath %.h $(INCLUDE)
