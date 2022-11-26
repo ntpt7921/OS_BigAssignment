@@ -5,6 +5,9 @@
 
 #define RAM_SIZE	(1 << ADDRESS_SIZE)
 
+void init_segment_table(struct seg_table_t *s_table);
+void init_page_table(struct page_table_t *s_table);
+
 /* Init related parameters, must be called before being used */
 void init_mem(void);
 
