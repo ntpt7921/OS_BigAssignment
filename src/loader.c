@@ -17,7 +17,7 @@ static enum ins_opcode_t get_opcode(char * opt) {
         return CALC;
     }else if (!strcmp(opt, OPT_ALLOC)) {
         return ALLOC;
-    }else if (!strcmp(opt, OPT_FREE)) {:bn
+    }else if (!strcmp(opt, OPT_FREE)) {
         return FREE;
     }else if (!strcmp(opt, OPT_READ)) {
         return READ;
